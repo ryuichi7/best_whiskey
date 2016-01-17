@@ -1,19 +1,19 @@
 class BestWhiskey::ContestYear
-	attr_accessor :whiskies, :winning_year
+	attr_accessor :whiskies, :year
 
-	@@all = ["2007", '2008','2009', "2010", "2011"]
+	@@all = []
 
-	def initialize(winning_year = nil)
-		@winning_year = winning_year
+	def initialize(year = nil)
+		@year = year
 		@whiskies = []
 		@@all << self
 	end
 
 	def self.find_by_year(year)
-		self.all.detect { |w| w.winning_year = year}
+		self.all.detect { |w| w.year == year}
 	end
-
-	def self.add_whiskey(whiskey)
+#is the overwriting happening here? check for duplication, find out how to account for that.
+	def add_whiskey(whiskey)
 		@whiskies << whiskey
 	end
 
@@ -23,3 +23,4 @@ class BestWhiskey::ContestYear
 end
 
 binding.pry
+
