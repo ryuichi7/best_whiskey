@@ -17,6 +17,7 @@ class BestWhiskey::CLI
 														" Enter 'e' at anytime to exit#{NEW_LINE*2}"
 
 	def call
+		puts NEW_LINE+"Please bear with us a moment while the gem loads..."
 		BestWhiskey::Scraper.new.make_whiskies
 		puts WELCOME_MESSAGE
 		list_years
@@ -68,7 +69,7 @@ class BestWhiskey::CLI
   	if input == 'y'
   		list_years
   	elsif input == 'n' || input == 'e'
-  		puts NEW_LINE+"Thank you for visiting the Whiskey of the Year CLI!"
+  		puts NEW_LINE+"Thank you for visiting the Whiskey of the Year CLI!"+NEW_LINE*2
 		else
 			invalid
 	  	next_step
