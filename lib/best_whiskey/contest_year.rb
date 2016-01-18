@@ -13,6 +13,10 @@ class BestWhiskey::ContestYear
 		self.all.detect { |w| w.year == year}
 	end
 #is the overwriting happening here? check for duplication, find out how to account for that.
+	def self.find_or_create_by_year(year)
+		self.find_by_year(year) || self.create(year)
+	end
+
 	def add_whiskey(whiskey)
 		@whiskies << whiskey
 	end

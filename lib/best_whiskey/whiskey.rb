@@ -2,7 +2,8 @@
 class BestWhiskey::Whiskey
 
 	attr_accessor :name,
-								:ABV,
+								:award,
+								:abv,
 								:category,
 								:style,
 								:country,
@@ -10,12 +11,12 @@ class BestWhiskey::Whiskey
 								:description,
 								:age,
 								:winning_year,
-								:url
+								:vintage
 
 	@@all = []
 
-	def initialize(attribute_array)
-		attribute_array.each do | k, v |
+	def initialize(attribute_hash)
+		attribute_hash.each do | k, v |
 			self.send( "#{k}=", v )
 		end
 		#method that adds whiskey object to winning_year object's array 
@@ -24,18 +25,17 @@ class BestWhiskey::Whiskey
 	end
 
 #create method that finds contest_year object and adds whiskey object to it's array 
-	def self.create_whiskey_from_scrp(attribute_array)
-		self.new(attribute_array).tap do |whiskey|
+	def self.create_whiskey_from_scrp(attribute_hash)
+		self.new(attribute_hash).tap do |whiskey|
 			whiskey.associate_year(whiskey.winning_year)
-			whiskey.winning_year.add_whiskey(whiskey)
+			whiskey.winning_year.each { |w| w.add_whiskey(whiskey) }
 		end
 	end
 
 #need to figure out how to allow a whiskey to have two winning years. also keep from overwriting another year
 	def associate_year(year)
-		#find_or_create_by_year?
-		year = BestWhiskey::ContestYear.find_by_year(year)
-		self.winning_year = year
+		y = year.map { |year| BestWhiskey::ContestYear.find_or_create_by_year(year) }
+		self.winning_year = y
 	end
 
 	def self.all
@@ -44,13 +44,15 @@ class BestWhiskey::Whiskey
 
 	def self.attributes
 		[ :name,
-		  :ABV,
+			:award,
+		  :abv,
 			:category,
 			:style,
 			:country,
 			:producer,
 			:description,
-			:age
+			:age,
+			:vintage
 		]
 	end
 end

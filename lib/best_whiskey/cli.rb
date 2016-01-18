@@ -14,9 +14,10 @@ class BestWhiskey::CLI
 	LIST_WINNERS_MESSAGE = "#{NEW_LINE}#{LINE} Here are the list of winners for "
 
 	ENTER_WHISKEY_MESSAGE = "#{NEW_LINE}Please enter the number of the whiskey you'd like to explore." +
-														" Enter 'e' at anytime to exit"
+														" Enter 'e' at anytime to exit#{NEW_LINE*2}"
 
 	def call
+		BestWhiskey::Scraper.new.make_whiskies
 		puts WELCOME_MESSAGE
 		list_years
 	end
@@ -38,7 +39,7 @@ class BestWhiskey::CLI
   def whiskey_list(input)
   	puts winners_message(contest_years, input)
   	year = contest_years[input.to_i - 1]
-  	year.whiskies.each_with_index { | whiskey, index | puts "#{index + 1}. #{whiskey.name}" }
+  	year.whiskies.each_with_index { | whiskey, index | puts "#{index + 1}. #{whiskey.name.capitalize}" }
   	puts ENTER_WHISKEY_MESSAGE
   	input = read
   	return if exit?(input)
@@ -46,7 +47,11 @@ class BestWhiskey::CLI
   		whiskey = year.whiskies[input.to_i - 1]	
   		attributes.each do |a|
   			attribute = whiskey.send(a)
-  			puts "#{a}: #{attribute}" unless attribute == nil
+  			if a == :award
+  				puts "#{a.capitalize}(s): #{attribute.join', '}"
+  			else
+  				puts "#{a.capitalize}: #{attribute.capitalize}" unless attribute == nil
+  			end
   		end
   		next_step
 	  else
@@ -81,7 +86,7 @@ class BestWhiskey::CLI
   end
 
   def contest_years
-  	@contest_years ||= BestWhiskey::ContestYear.all
+  	@contest_years ||= BestWhiskey::ContestYear.all.sort! { |x,y| y.year <=> x.year }
   end
 
   def read
