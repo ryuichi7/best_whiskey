@@ -2,14 +2,15 @@
 class BestWhiskey::Whiskey
 
 	attr_accessor :name,
-								:abv,
+								:ABV,
 								:category,
 								:style,
 								:country,
 								:producer,
 								:description,
 								:age,
-								:winning_year
+								:winning_year,
+								:url
 
 	@@all = []
 
@@ -32,6 +33,7 @@ class BestWhiskey::Whiskey
 
 #need to figure out how to allow a whiskey to have two winning years. also keep from overwriting another year
 	def associate_year(year)
+		#find_or_create_by_year?
 		year = BestWhiskey::ContestYear.find_by_year(year)
 		self.winning_year = year
 	end
@@ -42,7 +44,7 @@ class BestWhiskey::Whiskey
 
 	def self.attributes
 		[ :name,
-		  :abv,
+		  :ABV,
 			:category,
 			:style,
 			:country,
@@ -54,4 +56,3 @@ class BestWhiskey::Whiskey
 end
 
 
-binding.pry

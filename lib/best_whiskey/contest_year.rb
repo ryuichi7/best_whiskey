@@ -20,7 +20,12 @@ class BestWhiskey::ContestYear
 	def self.all 
 		@@all
 	end
+
+	def self.create(year)
+    self.new(year)
+  end
 end
 
-binding.pry
+
+
 

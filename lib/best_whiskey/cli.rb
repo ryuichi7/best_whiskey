@@ -1,17 +1,20 @@
 # CLI controller
 class BestWhiskey::CLI
 
-	NEW_LINE = "\n".freeze
+	NEW_LINE = "\n"
 
-	LINE = ('-' * 12).freeze
+	LINE = ('-' * 12)
 
 	WELCOME_MESSAGE = "#{NEW_LINE}#{LINE} Welcome to the Best Whiskies of the Year CLI!" +
-										  "#{LINE}#{NEW_LINE*2}".freeze
+										  "#{LINE}#{NEW_LINE*2}"
 
 	ENTER_YEAR_MESSAGE = "#{NEW_LINE}Please enter the number of the year" +
-													" you'd like to explore. Enter 'e' at anytime to exit".freeze
+													" you'd like to explore. Enter 'e' at anytime to exit"
 
-	LIST_WINNERS_MESSAGE = "#{NEW_LINE}#{LINE} Here are the list of winners for ".freeze
+	LIST_WINNERS_MESSAGE = "#{NEW_LINE}#{LINE} Here are the list of winners for "
+
+	ENTER_WHISKEY_MESSAGE = "#{NEW_LINE}Please enter the number of the whiskey you'd like to explore." +
+														" Enter 'e' at anytime to exit"
 
 	def call
 		puts WELCOME_MESSAGE
@@ -36,7 +39,7 @@ class BestWhiskey::CLI
   	puts winners_message(contest_years, input)
   	year = contest_years[input.to_i - 1]
   	year.whiskies.each_with_index { | whiskey, index | puts "#{index + 1}. #{whiskey.name}" }
-  	puts "\nPlease enter the number of the whiskey you'd like to explore. Enter 'e' at anytime to exit"
+  	puts ENTER_WHISKEY_MESSAGE
   	input = read
   	return if exit?(input)
   	if integer?(input) && input.to_i <= year.whiskies.size
