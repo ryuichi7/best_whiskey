@@ -47,7 +47,9 @@ class BestWhiskey::CLI
   		whiskey = year.whiskies[input.to_i - 1]	
   		attributes.each do |a|
   			attribute = whiskey.send(a)
-  			if a == :award
+  			if a == :name
+  				puts NEW_LINE+LINE+" #{attribute.capitalize} "+LINE+NEW_LINE*2
+  			elsif a == :award
   				puts "#{a.capitalize}(s): #{attribute.join', '}"
   			else
   				puts "#{a.capitalize}: #{attribute.capitalize}" unless attribute == nil
@@ -60,18 +62,13 @@ class BestWhiskey::CLI
   	end
   end
 
-	def exit?(input)
-		input == 'e'
-	end
-
-
 	def next_step
-  	puts "\nWould you like to see another whiskey? enter Y/N"
+  	puts NEW_LINE+"Would you like to see another whiskey? enter Y/N"
   	input = read
   	if input == 'y'
   		list_years
   	elsif input == 'n' || input == 'e'
-  		puts "\nThank you for visiting the Whiskey of the Year CLI!"
+  		puts NEW_LINE+"Thank you for visiting the Whiskey of the Year CLI!"
 		else
 			invalid
 	  	next_step
@@ -79,11 +76,14 @@ class BestWhiskey::CLI
 	end
   
   def years_list
-  	#somehow scrape to get list of available years and create array
   	contest_years.each_with_index do |year,index|
   		puts "#{index+1}. #{year.year}"
   	end
   end
+
+  def exit?(input)
+		input == 'e'
+	end
 
   def contest_years
   	@contest_years ||= BestWhiskey::ContestYear.all.sort! { |x,y| y.year <=> x.year }
@@ -108,7 +108,7 @@ class BestWhiskey::CLI
 
 	def integer?(value)
 		value =~ /[\d]/
-	end
+	end 
 
 
 end
