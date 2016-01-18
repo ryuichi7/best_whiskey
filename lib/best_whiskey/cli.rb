@@ -37,7 +37,7 @@ class BestWhiskey::CLI
   end
 
   def whiskey_list(input)
-  	puts winners_message(contest_years, input)
+  	winners_message(contest_years, input)
   	year = contest_years[input.to_i - 1]
   	year.whiskies.each_with_index { | whiskey, index | puts "#{index + 1}. #{whiskey.name.capitalize}" }
   	puts ENTER_WHISKEY_MESSAGE
@@ -102,7 +102,7 @@ class BestWhiskey::CLI
   end
 
   def winners_message(years, input)
-		"#{LIST_WINNERS_MESSAGE}#{years[input.to_i - 1].year}" +
+		puts "#{LIST_WINNERS_MESSAGE}#{years[input.to_i - 1].year}" +
 		  " #{LINE}#{NEW_LINE*2}"
 	end
 
