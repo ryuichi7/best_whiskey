@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'best_whiskey/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "best_whiskey"
+  spec.name          = "best-whiskey"
   spec.version       = BestWhiskey::VERSION
   spec.authors       = ["Brett Heenan"]
   spec.email         = ["brettrheenan@gmail.com"]
