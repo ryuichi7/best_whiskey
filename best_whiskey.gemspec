@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'best_whiskey/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "best-whiskey"
+  spec.name          = "best_whiskey"
   spec.version       = BestWhiskey::VERSION
   spec.authors       = ["Brett Heenan"]
   spec.email         = ["brettrheenan@gmail.com"]
@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "bin"
-  spec.executables   = ["best-whiskey"]
+  spec.executables   = ["best_whiskey"]
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 1.11"
