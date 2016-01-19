@@ -60,7 +60,7 @@ class BestWhiskey::Scraper
 	end
 
 	def assign_award(url)
-		award = noko_open(url).css("span.award").map { |a| a.text.downcase }
+		award = noko_open(url).css("span.award").map { |a| a.text.downcase unless a == nil}
 		@whiskey[:award] = award
 	end
 
