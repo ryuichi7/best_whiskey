@@ -39,13 +39,12 @@ class BestWhiskey::CLI
 
   def whiskey_list(input)
   	winners_message(contest_years, input)
-  	year = contest_years[input.to_i - 1]
-  	year.whiskies.each_with_index { | whiskey, index | puts "#{index + 1}. #{whiskey.name.capitalize}" }
+  	print_whiskies(input)
   	puts ENTER_WHISKEY_MESSAGE
   	input = read
   	return if exit?(input)
-  	if integer?(input) && input.to_i <= year.whiskies.size
-  		whiskey = year.whiskies[input.to_i - 1]	
+  	if integer?(input) && input.to_i <= @year.whiskies.size
+  		whiskey = @year.whiskies[input.to_i - 1]	
   		attributes.each do |a|
   			attribute = whiskey.send(a)
   			if a == :name
@@ -110,6 +109,11 @@ class BestWhiskey::CLI
 	def integer?(value)
 		value =~ /[\d]/
 	end 
+
+  def print_whiskies(input)
+    @year = contest_years[input.to_i - 1]
+    @year.whiskies.each_with_index { | whiskey, index | puts "#{index + 1}. #{whiskey.name.capitalize}" }
+  end
 
 
 end
