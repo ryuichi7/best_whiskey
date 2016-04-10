@@ -21,6 +21,8 @@ Or install it yourself as:
 
 enter best_whiskey in the command line to get started
 
+read about feature and todos [here](https://gist.github.com/ryuichi7/50d6c0dd4119fc9eb7d2b520a061551e)
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
