@@ -1,4 +1,3 @@
-# This class ...
 class BestWhiskey::Whiskey
 
 	attr_accessor :name,
@@ -15,7 +14,7 @@ class BestWhiskey::Whiskey
 
 	@@all = []
 
-	def initialize(attribute_hash)
+	def initialize(attribute_hash = {})
 		attribute_hash.each do | k, v |
 			self.send( "#{k}=", v )
 		end
@@ -30,8 +29,7 @@ class BestWhiskey::Whiskey
 	end
 
 	def associate_year(year)
-		y = year.map { |year| BestWhiskey::ContestYear.find_or_create_by_year(year) }
-		self.winning_year = y
+		self.winning_year = year.map { |year| BestWhiskey::ContestYear.find_or_create_by_year(year) }
 	end
 
 	def self.all
