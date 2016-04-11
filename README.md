@@ -1,5 +1,9 @@
 # BestWhiskey
 
+## Description
+
+A gem built for the Flatiron School's Learn-Verified Web Development Course as a study on scraping.
+Allows users to browse the winners of the best whikey of the year awards per http://www.worldwhiskiesawards.com/
 
 ## Installation
 
@@ -19,9 +23,13 @@ Or install it yourself as:
 
 ## Usage
 
-enter best_whiskey in the command line to get started
+Enter best_whiskey in the command line to get started:
+	
+		$ best_whiskey
 
-read about feature and todos [here](https://gist.github.com/ryuichi7/50d6c0dd4119fc9eb7d2b520a061551e)
+## Todo
+
+read about features and todos [here](https://gist.github.com/ryuichi7/50d6c0dd4119fc9eb7d2b520a061551e)
 
 ## Development
 
