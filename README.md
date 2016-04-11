@@ -3,7 +3,7 @@
 ## Description
 
 A gem built for the Flatiron School's Learn-Verified Web Development Course as a study on scraping.
-Allows users to browse the winners of the best whikey of the year awards per http://www.worldwhiskiesawards.com/
+Allows users to browse the winners of the best whiskey of the year awards per http://www.worldwhiskiesawards.com/
 
 ## Installation
 
